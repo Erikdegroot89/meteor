@@ -97,30 +97,25 @@ textarea {
 }
 #enemyContainer{
     height:80%;
+    /*position: relative;*/
     display: block;
 }
 
 .me_ship{
-    height: 30px;
-    width:50px;
-    background: #eee;
+    height: 50px;
+    width:30px;
+    background: #3aa;
     border-radius: 10%;
-    transition: all .1s ease-out;
+    transition: all .1s ease-out    ;
     position:absolute;
+    /*box-shadow: inset 0 2px 3px 5px #eee;*/
     
     
 }
 
-.me_ship.jsMovingLeft{
-    -webkit-transform: skewY(-5deg);
-    transition: all .1s ease-out;
+.me_ship, .me_shot, .me_enemy{
+    /*box-shadow: 45px 45px 3px 2px #eee;*/
 }
-.me_ship.jsMovingRight{
-
- transition: all .1s ease-out;
-    -webkit-transform: skewY(5deg);
-}
-
 
 .me_shot{
     display: block;
@@ -128,31 +123,46 @@ textarea {
     position: absolute;
     height:10px;
     background: orange;
-    border: solid 1px red;
-    border-bottom: none;
+    border-bottom: solid 1px red;
+    /*border-bottom: none;*/
     border-radius: 3px;
+    box-shadow: 0px 5px 2px 5px rgba(255,255,125,0.5);
 }
 .me_shot.me_shot_exploding{
-    width:50px;
-    height:50px;
+    width:30px;
+    height:30px;
+    margin-left:-15px;
     background: orange;
     border-radius: 100%;
-    box-shadow: 0 0 5px red;
+    box-shadow: 0 0 5px red, inset 0px 0px 8px 2px yellow;;
+    transition: all 1s ease-out;
 }
 
 .me_enemy{
     position: absolute;
     display: block;
     width:50px;
+    /*top:0;*/
     height:50px;
     background: brown;
     text-align: center;
     line-height: 50px;
     color:#fff;
+    border-radius: 100%;
+
 }
 
 .me_enemy.me_enemy_exploding{
-    background:#eee;
+    background:orange;
+    margin-left:-25px;
+    margin-bottom:-25px;
+    width:100px;
+    height:100px;
+    opacity: 0.2;
+    box-shadow: 0 0 5px red, inset 0px 0px 8px 2px yellow;;
+    transition: all 1s ease-in;
+
+
 }
 
 .controlContainer{
@@ -174,7 +184,7 @@ textarea {
 .controlBtn{
     position: fixed;
     bottom:0;
-    border-radius: 100%;
+    border-radius: 100% 100% 0 0;
     background: #333;
     width:50px;
     height:50px;
@@ -186,7 +196,7 @@ textarea {
 }
 .controlBtn.fireBtn{
     width: 100px;   
-    border-radius: 5px;
+    border-radius: 25px 25px 0 0;
     left: calc(50% - 50px);
 }
 
