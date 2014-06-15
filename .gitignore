@@ -1,2 +1,18 @@
 # Include your project-specific ignores in this file
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+
+# Mac OS X
+*.DS_Store
+Icon?
+*.swp
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Generated files
+*.[oa]
+!User Voice/libUserVoice.a
