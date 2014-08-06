@@ -21,8 +21,11 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
+    background: #222; 
 }
-
+html,body{
+    height: 100%
+}
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
@@ -92,8 +95,15 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
+html{
+    /*background: #222;*/
+}
+
+
 #me_container{
     height:100%;
+    background: #111;
 }
 #enemyContainer{
     height:80%;
@@ -150,6 +160,27 @@ textarea {
     color:#fff;
     border-radius: 100%;
 
+}
+#scoreList{
+    font-size: 9pt;
+    display:block;
+    width:100px;
+    color:#fff;
+    position: fixed;
+    bottom: 30%;
+    left:20px;
+    color:#aaa;
+}
+
+.game_over #scoreList
+{
+    left: calc(50% - 150px);
+    display:block;
+    width:300px;
+    color: #fff;
+    font-size: 14pt;
+    /*margin : 200px auto;*/
+    transition: all 2s ease-out;
 }
 
 .me_enemy.me_enemy_exploding{

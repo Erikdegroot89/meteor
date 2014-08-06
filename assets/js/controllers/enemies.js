@@ -6,7 +6,6 @@ ME.enemies = {
 		
 		$.each(ME.enemies.collection,function(i,item)
 		{
-
 			item.relocate(item.loc.x,item.loc.y - item.speed);
 		});
 	},
@@ -14,10 +13,11 @@ ME.enemies = {
 	collection 	: new Array(),
 	handleLoss 	: function() // sniff..
 	{
-		ME.enemies.alive --;
+		ME.enemies.alive --; // dun.. duduuun...!
 		console.log(ME.enemies.alive, 'left!');
 		if(ME.enemies.alive == 0)
-			alert('you win!');;   
+			ME.game.addScore();
+			
 	},
 	alive : 0,
 
