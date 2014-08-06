@@ -12,17 +12,16 @@ ME.enemies = {
 	},
 	random		: true,
 	collection 	: new Array(),
-	handleLoss 	: function()
+	handleLoss 	: function() // sniff..
 	{
-
 		ME.enemies.alive --;
 		console.log(ME.enemies.alive, 'left!');
 		if(ME.enemies.alive == 0)
 			alert('you win!');;   
 	},
-	alive : ME.rules.max_enemies,
+	alive : 0,
 
-	place : function()
+	place : function()	// incoming!
 	{
 
 		var i_collumn 		= 0;
