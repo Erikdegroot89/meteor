@@ -19,10 +19,10 @@ ME.controls = {
 
 			if(ship.movement.isAcc)
 			{
-				ship.movement.xacc ++;
-				if(ship.movement.xacc > 10)
+				
+				if(ship.movement.xacc <= 10)
 				{
-					ship.movement.xacc = 10;
+					ship.movement.xacc ++;
 				}
 			}
 			else{
