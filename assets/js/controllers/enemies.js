@@ -61,26 +61,27 @@ ME.enemies = {
 
 	enemy : function()
 	{
-
-		var self 			= this;
-		self.size       = 1;
+		var power 		= 1 + Math.random();
+		console.log(power);
+		var self 		= this;
+		self.size       = {width:50 * power, height:50 * power};
 		self.alive 		= true;
 		self.enemy_i 	= ME.enemies.alive ;
 		
 		self.volatile 	= true;
-		self.speed  =   2;
-		self.health =   20;
+		self.speed  =   1;
+		self.health =   60 + (10 * power);
 		self.$elem  =   $('<div class="me_enemy"></div>');
 		self.$elem.append(self.enemy_i);
-		
+		self.$elem.width(self.size.width);
+		self.$elem.height(self.size.height);
 		self.loc = {
 			x      :   0,
 			x2     :   0,
 			y      :   0,
 			y2     :   0
 		}
-		// self.$elem.width(self.$elem.width() * self.size);
-		// self.$elem.height(self.$elem.height() * self.size);
+		
 
 		self.handleDamage = function(amount)
 		{
@@ -103,9 +104,15 @@ ME.enemies = {
 
 			self.loc = {
 				x      :   x,
-				x2     :   x + self.$elem.width(),
+				x2     :   x + self.size.width,
 				y      :   y,
-				y2     :   y + self.$elem.height()
+				y2     :   y + self.size.height
+			}
+
+			if(self.loc.y2 <= 50)
+			{
+				self.explode();
+				ME.game.lose();
 			}
 		}
 		self.explode = function()
@@ -121,7 +128,7 @@ ME.enemies = {
 			ME.enemies.collection.unset(self.bullet_i);
 			
 			self.volatile = false;
-			self.$elem.fadeOut(1000).promise().done(function()
+			self.$elem.fadeOut(3000,function()
 			{
 				this.remove();
 			});

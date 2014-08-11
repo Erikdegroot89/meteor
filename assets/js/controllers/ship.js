@@ -1,5 +1,6 @@
 ME.ship = {
 	'$elem'     : null,
+	size		: {width: 50,height:70},
 	movement : {
 		speed   : 2,                // velocity of ship
 		x       : 0,                // (bottom left) position as set by dom
@@ -8,6 +9,7 @@ ME.ship = {
 		y2		: 0,                // top right -
 		xacc    : 0,                // acceleration due to input buttons
 		xaccFactor : 0,
+		
 		isAcc   : false,            // is accelerating boolean
 		isMoving: false,            // is moving boolean
 		willListenForInput : true,  // allow input to manipulate acceleration
@@ -22,9 +24,9 @@ ME.ship = {
 				'bottom'    : y
 			});
 			this.x     = x;
-			this.x2    = x + ship.$elem.width();
+			this.x2    = x + 40;
 			this.y     = y;
-			this.y2    = y + ship.$elem.height();
+			this.y2    = y + 40;
 		},
 		goLeft  : function() // steer left
 		{
@@ -74,7 +76,7 @@ ME.ship = {
 		.appendTo($canvas);
 
 
-		this.movement.relocate((ME.game.bounds.x.max / 2) - (this.$elem.width()/2), 100);
+		this.movement.relocate( (ME.game.bounds.x.max / 2) - (this.size.width/2), 10);
 
 	},
 	bind    : function()
