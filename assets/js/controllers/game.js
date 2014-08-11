@@ -3,6 +3,7 @@
 ME.game = {
 	score : 100000,
 	starttime : new Date().getTime(),
+	paused : false,
 	bounds : {
 		x: {
 			min:0, 
@@ -24,22 +25,33 @@ ME.game = {
 		$(document).keydown(ME.controls.bindKeysDown);
 		$(document).keyup(ME.controls.bindKeysUp);
 
-
+		$('.me_pause').click(ME.game.pause);
 		ME.game.drawScore();
 		ME.game.run();
 	},
 
-	stop : function()
+	clear : function()
 	{
-		this.pause();
+		clearInterval(ME.enemies.enemiesLoop);
+		clearInterval(ME.ship.gun.shotLoop);
+		clearInterval(ME.shot.hitLoop);	
+		clearInterval(ME.controls.movementLoop);
+
 	},
 
 	pause : function()
 	{
-		clearInterval(ME.enemies);
-		clearInterval(ME.ship.gun.shotLoop);
-		clearInterval(ME.shot.handle);	
-		clearInterval(ME.controls.ticker);
+		if(ME.game.paused)
+		{
+			ME.game.run();
+			ME.game.paused = false;
+			$('#me_container').removeClass('paused');
+		}else{
+			ME.game.clear();	
+			ME.game.paused = true;
+			$('#me_container').addClass('paused');
+		}
+		
 	},
 
 	run : function()
@@ -51,16 +63,22 @@ ME.game = {
 
 		
 	},
+	lose : function()
+	{
+		alert('aww, you lost!');
+		ME.game.clear();
+	},
 	drawScore : function(finished){
 
 		if(finished == true)
 		{
 			$('#me_container').addClass('game_over');
+			ME.game.clear();
 		}
 		$('#scoreList').remove();
 		$score_list = $('<ol id="scoreList"></ol>');
 		var scores = JSON.parse( localStorage.getItem('scores') );
-		console.log(scores);
+		
 		if(scores)
 		{
 			$.each(scores, function(i, item)
@@ -89,9 +107,19 @@ ME.game = {
 		scores.push(my_score);
 		
 
-		localStorage.setItem('scores',JSON.stringify(scores)); 
+		localStorage.setItem('scores',JSON.stringify(scores.sort(compare))); 
 		ME.game.drawScore(true);
-		ME.game.stop();
+		ME.game.clear();
 	}
 }
+
+
+function compare(a,b) {
+  if (a.score < b.score)
+     return 1;
+  if (a.score > b.score)
+    return -1;
+  return 0;
+}
+
 
