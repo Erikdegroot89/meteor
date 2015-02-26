@@ -16,3 +16,4 @@ Icon?
 # Generated files
 *.[oa]
 !User Voice/libUserVoice.a
+.DS_Store
